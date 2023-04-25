@@ -5,6 +5,12 @@
     box-sizing: border-box;
 }
 
+Telas.jogo = {
+    inicializa() {
+        globais.plcar = criaPlacar
+    }
+}
+
 .game-board {
 
     width: 100%;
@@ -27,11 +33,30 @@
 }
 
 .clouds{
-    width: 600px;
+    width: 700px;
     position:absolute;
-    animation: clouds-animation 20s infinite linear;
+    animation: clouds-animation 10s infinite linear;
     
 }
+.restart-button {
+    display: block;
+    margin: 0 auto;
+    font-size: 24px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
+/* estilo para a mensagem "TENTE NOVAMENTE" */
+.try-again-message {
+    display: none; /* começa oculto */
+    font-size: 24px;
+    text-align: center;
+    margin-top: 50px;
+    color: red;
+  }
+    
 
 
 .jump{
@@ -45,7 +70,7 @@
     bottom: 0;
     width: 0;
     width: 100px;
-    animation: pipe-animation 1.5s infinite linear;
+    animation: pipe-animation 2s infinite linear;
 }
 
 @keyframes pipe-animation {
