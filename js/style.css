@@ -5,11 +5,6 @@
     box-sizing: border-box;
 }
 
-Telas.jogo = {
-    inicializa() {
-        globais.plcar = criaPlacar
-    }
-}
 
 .game-board {
 

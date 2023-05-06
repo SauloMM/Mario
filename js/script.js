@@ -29,9 +29,7 @@ const loop = setInterval(() => {
     const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
 
     if (pipePosition <= 110 && pipePosition > 0 && marioPosition < 80) {
-        showTryAgainMessage(); // chama a função para exibir a mensagem
-
-        
+            
         pipe.style.animation = 'none';
         pipe.style.left = `${pipePosition}px`;
 
@@ -42,9 +40,7 @@ const loop = setInterval(() => {
         mario.style.width = '75px'
         mario.style.marginLeft = '50px'
 
-        audio.pause();
-        restartButton.style.display = 'block'; // exibe o botão de reinício
-        
+            
     }
 
 }, 10);
@@ -55,6 +51,4 @@ document.addEventListener('keydown', () => {
     audio.play();
 });
 
-restartButton.addEventListener('click', () => {
-    window.location.reload(); // recarrega a página para reiniciar o jogo
-});
+
