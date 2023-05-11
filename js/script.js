@@ -2,13 +2,37 @@ const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
 const restartButton = document.querySelector('#restart-button');
 const tryAgainMessage = document.querySelector('.try-again-message');
-const scoreDisplay = document.querySelector('.score');
-
-let score = 0; // variável para armazenar a pontuação atual do jogador
-
+const score = document.querySelector('.score');
 const audioJump = new Audio('pulo.mp3');
 const audioSong = new Audio('song.mp3');
 const audioGameOver = new Audio('game-over.mp3');
+const easyButton = document.getElementById('easy');
+const hardButton = document.getElementById('hard');
+const coin = document.querySelector('.coin');
+let coinPosition = 0;
+const coinSpeed = 5; // pixels per interval
+const intervalTime = 50; // milliseconds
+
+function moveCoin() {
+  coinPosition += coinSpeed;
+  coin.style.left = coinPosition + 'px';
+  // Check for collision with character here
+}
+
+setInterval(moveCoin, intervalTime);
+
+let difficulty = 'easy'; // começa com dificuldade fácil por padrão
+
+easyButton.addEventListener('click', () => {
+  difficulty = 'easy';
+});
+
+hardButton.addEventListener('click', () => {
+  difficulty = 'hard';
+});
+
+
+let pipeSpeed = 7; // define a velocidade do cano
 
 // função para exibir a mensagem "TENTE NOVAMENTE"
 const showTryAgainMessage = () => {
@@ -27,6 +51,11 @@ const jump = () => {
   }, 500);
 };
 
+const updateScore = () => {
+  let currentScore = parseInt(score.textContent);
+  score.textContent = ++currentScore;
+};
+
 const loop = setInterval(() => {
   const pipePosition = pipe.offsetLeft;
   const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
@@ -38,20 +67,23 @@ const loop = setInterval(() => {
     mario.style.animation = 'none';
     mario.style.bottom = `${marioPosition}px`;
 
-    mario.src = 'game-over.png'
-    mario.style.width = '75px'
-    mario.style.marginLeft = '50px'
+    mario.src = 'facada.png'
+    mario.style.width = '100px'
+    mario.style.marginLeft = '75px'
 
     // Adiciona o som de Game Over
     
     audioSong.pause(); // Pausa a música "song.mp3"
     audioGameOver.play(); // Toca a música "game-over.mp3"
-
+    
     showTryAgainMessage();
-  } else if (pipePosition <= 0) {
-    // atualiza a pontuação e exibe na tela
-    score++;
-    scoreDisplay.textContent = score;
+  }
+
+  if (pipePosition <= -100) { // quando o cano sair do quadro
+    pipe.style.left = '100%';
+    updateScore(); // atualiza a pontuação
+  } else {
+    pipe.style.left = `${pipePosition - pipeSpeed}px`; // movimenta o cano para a esquerda
   }
 }, 10);
 

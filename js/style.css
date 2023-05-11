@@ -15,9 +15,26 @@
     margin: 0 auto;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(#87CEEB, #E0F6FF);
+    background-image: url(congresso.jpg);
+    background-size:contain;
     
 }
+
+.coin {
+    width: 50px;
+    height: 50px;
+    background-image: url('kit.png');
+    background-size: cover;
+    position: absolute;
+    top: 350px;
+    left: 600px;
+  }
+  
+  
+  
+  
+  
+  
 
 .mario{
     width: 150px;
@@ -28,7 +45,7 @@
 }
 
 .clouds{
-    width: 700px;
+    width: 400px;
     position:absolute;
     animation: clouds-animation 10s infinite linear;
     
@@ -64,6 +81,7 @@
     position: absolute;
     bottom: 0;
     width: 0;
+    height: 40;
     width: 100px;
     animation: pipe-animation 2s infinite linear;
 }
