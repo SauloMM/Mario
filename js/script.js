@@ -2,6 +2,9 @@ const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
 const restartButton = document.querySelector('#restart-button');
 const tryAgainMessage = document.querySelector('.try-again-message');
+const scoreDisplay = document.querySelector('.score');
+
+let score = 0; // variável para armazenar a pontuação atual do jogador
 
 const audioJump = new Audio('pulo.mp3');
 const audioSong = new Audio('song.mp3');
@@ -43,6 +46,12 @@ const loop = setInterval(() => {
     
     audioSong.pause(); // Pausa a música "song.mp3"
     audioGameOver.play(); // Toca a música "game-over.mp3"
+
+    showTryAgainMessage();
+  } else if (pipePosition <= 0) {
+    // atualiza a pontuação e exibe na tela
+    score++;
+    scoreDisplay.textContent = score;
   }
 }, 10);
 
